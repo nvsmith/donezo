@@ -8,7 +8,7 @@ export default function Index() {
     const [todos, setTodos] = useState(data.sort((a, b) => b.id - a.id));
     const [text, setText] = useState("");
 
-    // Create (CRUD): Add a new todo to the list
+    // Create (CRUD): Add a new todo to the list with an ID of 1 more than the last todo.
     const addTodo = () => {
         if (text.trim()) {
             const newId = todos.length > 0 ? todos[0].id + 1 : 1;
@@ -20,6 +20,11 @@ export default function Index() {
     // Update (CRUD): Toggle the completed status of a todo
     const toggleTodo = (id) => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
+    };
+
+    // Delete (CRUD): Remove a todo from the list
+    const removeTodo = (id) => {
+        setTodos(todos.filter((todo) => todo.id !== id));
     };
 
     return (
