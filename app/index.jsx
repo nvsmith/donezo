@@ -28,6 +28,22 @@ export default function Index() {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
+    const renderItem = ({ item }) => {
+        return (
+            <View style={styles.todoItem}>
+                <Text
+                    style={[styles.todoText, item.completed && styles.completedText]}
+                    onPress={() => toggleTodo(item.id)}
+                >
+                    {item.title}
+                </Text>
+                <Pressable onPress={() => removeTodo(item.id)}>
+                    <MaterialCommunityIcons name="delete-circle" size={36} color="red" selectable={undefined} />
+                </Pressable>
+            </View>
+        );
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.inputContainer}>
@@ -42,6 +58,12 @@ export default function Index() {
                     <Text style={styles.addButtonText}>Add</Text>
                 </Pressable>
             </View>
+            <FlatList
+                data={todos}
+                renderItem={renderItem}
+                keyExtractor={(todo) => todo.id}
+                contentContainerStyle={{ flexGrow: 1 }}
+            />
         </SafeAreaView>
     );
 }
