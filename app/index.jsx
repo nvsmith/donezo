@@ -40,6 +40,21 @@ export default function Index() {
         fetchData();
     }, [data]);
 
+    // Store data to persist across sessions
+    useEffect(() => {
+        const storeData = async () => {
+            try {
+                const jsonValue = JSON.stringify(todos);
+                await AsyncStorage.setItem("TodoApp", jsonValue);
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        storeData();
+    }, [todos]);
+
+    // Font loading check
     if (!loaded && !error) {
         return null;
     }
