@@ -8,6 +8,7 @@ import { Inter_500Medium, useFonts } from "@expo-google-fonts/inter";
 
 import Animated, { LinearTransition } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 import Octicons from "@expo/vector-icons/Octicons";
 import { data } from "@/data/todos";
@@ -80,6 +81,7 @@ export default function Index() {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
+    // Render todo items in the FlatList
     const renderItem = ({ item }) => {
         return (
             <View style={styles.todoItem}>
@@ -132,6 +134,7 @@ export default function Index() {
                 itemLayoutAnimation={LinearTransition}
                 keyboardDismissMode="on-drag"
             />
+            <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
         </SafeAreaView>
     );
 }
