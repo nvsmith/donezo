@@ -83,6 +83,7 @@ export default function Index() {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
+    // Navigate to a todo's individual (dynamic) page
     const handlePress = (id) => {
         router.push(`/todos/${id}`);
     };
@@ -101,6 +102,7 @@ export default function Index() {
         );
     };
 
+    // App Layout
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.inputContainer}>
@@ -116,9 +118,7 @@ export default function Index() {
                 </Pressable>
                 <Pressable
                     onPress={() => setColorScheme(colorScheme === "light" ? "dark" : "light")}
-                    style={{
-                        marginLeft: 10,
-                    }}
+                    style={{ marginLeft: 10 }}
                 >
                     <Octicons
                         name={colorScheme === "dark" ? "moon" : "sun"}
